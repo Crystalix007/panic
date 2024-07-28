@@ -2,6 +2,9 @@
 
 A library that allows different panic behaviours to be configured at runtime.
 
+The intent is to allow stricter assertions in development, that may be relaxed
+when running in production, although the reverse may also be configured.
+
 ## Usage
 
 ```go
@@ -38,8 +41,15 @@ $ go run -tags prod ./main.go
 
 |                     Flag                         |                   Description                   |
 |--------------------------------------------------|-------------------------------------------------|
-| `dev` or `GITHUB_COM_CRYSTALIX007_PANIC_ENABLED` | Panics and breaks execution on `panic`.         |
+| default or `GITHUB_COM_CRYSTALIX007_PANIC_PANIC` |     Panics and breaks execution on `panic`.     |
+|   `prod` or `GITHUB_COM_CRYSTALIX007_PANIC_LOG`  |       Makes panics print a `slog` warning.      |
+|      `GITHUB_COM_CRYSTALIX007_PANIC_SILENT`      |             Silently drops panics.              |
 |      `GITHUB_COM_CRYSTALIX007_PANIC_CUSTOM`      | Allows setting a custom `panic` implementation. |
 
-Note that the `prod` tag actually indicates production mode by the _absence_ of
-the `dev` tag. You could equally not tag it at all.
+Using environment tags, like:
+
+- `dev`
+- `prod`
+
+will also be sufficient, as `dev` will invoke the default behaviour, and `prod`
+will enable `slog` logging.
