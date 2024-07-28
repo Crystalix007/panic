@@ -1,6 +1,6 @@
 //go:build GITHUB_COM_CRYSTALIX007_PANIC_CUSTOM
 
-package panic
+package backend
 
 var panicImpl func(v any) = defaultPanicImpl
 
