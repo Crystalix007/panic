@@ -17,10 +17,10 @@ func main() {
 }
 ```
 
-Then, this can be run / built with `-tag dev`:
+Then, this can be run / built with `-tags dev`:
 
 ```sh
-$ go run -tag dev ./main.go
+$ go run -tags dev ./main.go
 panic: test
 
 goroutine 1 [running]:
@@ -31,7 +31,7 @@ main.main()
 exit status 2
 ```
 
-or `-tag prod`:
+or `-tags prod`:
 
 ```sh
 $ go run -tags prod ./main.go
